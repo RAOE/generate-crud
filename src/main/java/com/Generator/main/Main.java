@@ -38,7 +38,7 @@ public class Main {
 	public static void main(String[] args) {
 		Main.init();
 		Main.generate();
-        
+
 	}
 
 	/**
@@ -94,19 +94,48 @@ public class Main {
 		Writer docout = null;
 		generateModel(cfg, tableList, modelList, dir);// 创建model包与model类的代码
 		generateService(cfg, modelList, dir);// 创建service包和service类的代码
-       
-		
-		
-		
-		
+		generateController(cfg, modelList, dir);// 创建controller包和controller类的代码
 		System.out.println("-----code生成完成....-------");
 
 	}
 
+	private static void generateController(Configuration cfg, List<String> modelList, File dir) {
+		Map<String, Object> rootMap = new HashMap<String, Object>();
+		List<String> controllerNameList = DataUtils.dealClassNameByParam(modelList, "Controller");// 每一个model类增加后缀名
+		Writer docout = null;
+		try {
+			for (int i = 0; i < modelList.size(); i++) {
+				Template temp = cfg.getTemplate("ControllerTemplate.java");
+				File documentFile = new File(dir + "//" + controllerPath);
+				if (!documentFile.exists()) {
+					documentFile.mkdir();
+				}
+				
+				File docFile = new File(documentFile + "//" + controllerNameList.get(i));
+				docout = new BufferedWriter(new OutputStreamWriter(new FileOutputStream(docFile)));
+				
+				temp.process(rootMap, docout);
+			}
+
+		} catch (IOException e) {
+			e.printStackTrace();
+		} catch (TemplateException e) {
+			e.printStackTrace();
+		} finally {
+			try {
+				if (docout != null) {
+					docout.flush();
+					docout.close();
+				}
+			} catch (IOException e) {
+				e.printStackTrace();
+			}
+		}
+	}
 	private static void generateService(Configuration cfg, List<String> modelList, File dir) {
-		List<String> serviceClassNameList = DataUtils.dealServiceClassName(modelList);// 每一个model类增加后缀名
-		List<String> serviceListSuffix = DataUtils.dealClassName(serviceClassNameList);
-		Map<String, Object> rootServiceMap = new HashMap<String, Object>();
+		List<String> serviceNameList = DataUtils.dealClassNameByParam(modelList,"Service");// 每一个model类增加后缀名
+		List<String> serviceListSuffix = DataUtils.dealClassName(serviceNameList);
+		Map<String, Object> rootMap = new HashMap<String, Object>();
 		Writer docout = null;
 		try {
 			for (int i = 0; i < modelList.size(); i++) {
@@ -116,12 +145,12 @@ public class Main {
 					documentFile.mkdir();
 				}
 				File docFile = new File(documentFile + "//" + serviceListSuffix.get(i));
-				rootServiceMap.put("package", servicePath.replace("//", "."));
-				rootServiceMap.put("className", serviceClassNameList.get(i));
-				rootServiceMap.put("modelName", modelList.get(i));
-				rootServiceMap.put("modelPath", modelPath.replace("//", "."));
+				rootMap.put("package", servicePath.replace("//", "."));
+				rootMap.put("className", serviceNameList.get(i));
+				rootMap.put("modelName", modelList.get(i));
+				rootMap.put("modelPath", modelPath.replace("//", "."));
 				docout = new BufferedWriter(new OutputStreamWriter(new FileOutputStream(docFile)));
-				temp.process(rootServiceMap, docout);
+				temp.process(rootMap, docout);
 			}
 
 		} catch (IOException e) {

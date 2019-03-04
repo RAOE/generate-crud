@@ -54,14 +54,14 @@ public class DataUtils {
 	}
 
 	/**
-	 * 
+	 * 在末尾拼接param
 	 * @param modelList
 	 * @return
 	 */
-	public static List<String> dealServiceClassName(List<String> modelList) {
+	public static List<String> dealClassNameByParam(List<String> modelList,String param) {
 		List<String> list = new ArrayList<String>();
 		for (String str : modelList) {
-			list.add(new StringBuffer(str).append("Service").toString());
+			list.add(new StringBuffer(str).append(param).toString());
 		}
 		return list;
 	}
