@@ -12,6 +12,7 @@ Generate-crud is a plug-in that automatically generates pojo, service, and contr
 <p>you can get it by link：https://pan.baidu.com/s/1nJgKg3tb1Yb4GDlhsykz4w 
 key：6ilu 
 </p>
+<H1>STEP 1</H1>
 <p> Create a springboot project to import web packages ,then Import the required jar package and place the generate-crud.xml file in the java/resources/template/directory</p>
 <H2>STEP 2</H2>
 pom.xml
