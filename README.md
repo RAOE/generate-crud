@@ -1,16 +1,22 @@
 
+
 # generate-crud
 Generate-crud is a plug-in that automatically generates pojo, service, and controller layers to avoid repetitive development. It can be used to generate project deployments (based on springboot development) through database tables and personalized configuration.
-<H1>Environment</H1>
+
+<H1>How to use it ?</H1>
+<H2>STEP 1</H2>
+<H3>Environment</H3>
 <p>lib/generate-crud.jar</p>
 <p>lib/mysql-connector-java-5.0.8-bin.jar</p>
 <p>lib/generatorCRUD.xml</p>
-<H1>How to use it ?</H1>
-<H2>STEP 1</H2>
+<p>you can get it by link：https://pan.baidu.com/s/1nJgKg3tb1Yb4GDlhsykz4w 
+key：6ilu 
+</p>
 <p> Create a springboot project to import web packages ,then Import the required jar package and place the generate-crud.xml file in the java/resources/template/directory</p>
 <H2>STEP 2</H2>
+pom.xml
 
-    <dependency>
+         <dependency>
     			<groupId>org.freemarker</groupId>
     			<artifactId>freemarker</artifactId>
     			<version>2.3.20</version>
