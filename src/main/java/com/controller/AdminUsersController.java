@@ -1,20 +1,62 @@
 package com.controller;
+
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
+import com.Generator.utils.JSONResult;
+import com.model.AdminUsers;
+import com.service.AdminUsersService;
 
 @RestController
-@RequestMapping("/hello")
+@RequestMapping("/AdminUsers")
+public class AdminUsersController{
 
-public class AdminUsersController
-{
-  
-    @RequestMapping()  
-    public String helloWolrd()
-    {
-     return "hello ~ Wolrd ";
-     }  
+	@Autowired
+	private AdminUsersService service;
+		
+	@RequestMapping("/test")
+	public String helloWolrd() {
+		return "hello ~ Wolrd ";
+	}
 
+	/**
+	 * 提交添加请求请求
+	 * @return
+	 */
+	@RequestMapping("/addSubmit.do")
+	public JSONResult addSubmit(AdminUsers  model)
+	{
+		return JSONResult.ok("添加成功");
+	}
+
+	/**
+	 * 提交删除删除请求
+	 * @return
+	 */
+	@RequestMapping("/delete.do")
+	public JSONResult delete(Long id) {
+		return JSONResult.ok("删除成功");
+	}
+
+	/**
+     * 更新成功	
+     * @return
+     */
+	@RequestMapping("/update.do")
+	public JSONResult update(AdminUsers  model)
+	{
+		return JSONResult.ok("更新成功");
+	}
+
+	/**
+	 * 查询
+	 * @return
+	 */
+	@RequestMapping("queryAll.do")
+	public JSONResult queryAll() {
+		return JSONResult.ok("查询完成");
+	}
 
 }

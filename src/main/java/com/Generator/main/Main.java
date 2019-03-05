@@ -13,15 +13,11 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-
-import javax.xml.crypto.Data;
-
 import org.dom4j.Document;
 import org.dom4j.DocumentException;
 import org.dom4j.Element;
 import org.dom4j.io.SAXReader;
 import com.Generator.utils.DataUtils;
-
 import freemarker.template.Configuration;
 import freemarker.template.Template;
 import freemarker.template.TemplateException;
@@ -33,13 +29,16 @@ public class Main {
 	// 代码生成位置
 	public static String targetProject = Main.class.getResource("/").getPath().replace("/target/classes/", "")
 			+ "/src/main/java/";
+
 	public static String modelPath = "com//model";// model包的生产路径
 	public static String servicePath = "com//service";// service包的生产路径
 	public static String controllerPath = "com//controller";// controller包的生产路径
+	
+	
+	
 	public static void main(String[] args) {
 		Main.init();
 		Main.generate();
-
 	}
 
 	/**
@@ -105,6 +104,8 @@ public class Main {
 		Map<String, Object> rootMap = new HashMap<String, Object>();
 		List<String> controllerNameList = DataUtils.dealClassNameByParam(modelList, "Controller");// 每一个model类增加后缀名
 		List<String> controllerNameListSuffix=DataUtils.dealClassName(controllerNameList);
+		List<String> serviceNameList = DataUtils.dealClassNameByParam(modelList,"Service");// 每一个model类增加后缀名
+
 		Writer docout = null;
 		try {
 			for (int i = 0; i < modelList.size(); i++) {
@@ -117,8 +118,12 @@ public class Main {
 				}
 				File docFile = new File(documentFile + "//" + controllerNameListSuffix.get(i));
 				docout = new BufferedWriter(new OutputStreamWriter(new FileOutputStream(docFile)));
-				rootMap.put("package", controllerPath.replace("//", "."));
 				rootMap.put("className", controllerNameList.get(i));
+				rootMap.put("model", modelList.get(i));
+				rootMap.put("serviceName", serviceNameList.get(i));
+				rootMap.put("package", controllerPath.replace("//", "."));
+				rootMap.put("modelPath", modelPath.replace("//", "."));
+				rootMap.put("servicePath", servicePath.replace("//", "."));
 				temp.process(rootMap, docout);
 			}
 

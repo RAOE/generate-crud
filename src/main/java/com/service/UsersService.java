@@ -6,9 +6,9 @@ import com.model.Users;
 public interface UsersService
 {
   
-   public void add(Users modelName);
+   public void addSubmit(Users modelName);
    public void update(Users modelName);
    public List<Users> queryAll();
-   public void remove(Long id);
+   public void delete(Long id);
 
 }

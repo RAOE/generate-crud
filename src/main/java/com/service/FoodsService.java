@@ -6,9 +6,9 @@ import com.model.Foods;
 public interface FoodsService
 {
   
-   public void add(Foods modelName);
+   public void addSubmit(Foods modelName);
    public void update(Foods modelName);
    public List<Foods> queryAll();
-   public void remove(Long id);
+   public void delete(Long id);
 
 }

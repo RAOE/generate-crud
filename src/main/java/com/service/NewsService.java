@@ -6,9 +6,9 @@ import com.model.News;
 public interface NewsService
 {
   
-   public void add(News modelName);
+   public void addSubmit(News modelName);
    public void update(News modelName);
    public List<News> queryAll();
-   public void remove(Long id);
+   public void delete(Long id);
 
 }

@@ -6,9 +6,9 @@ import com.model.AdminUsers;
 public interface AdminUsersService
 {
   
-   public void add(AdminUsers modelName);
+   public void addSubmit(AdminUsers modelName);
    public void update(AdminUsers modelName);
    public List<AdminUsers> queryAll();
-   public void remove(Long id);
+   public void delete(Long id);
 
 }
