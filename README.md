@@ -8,7 +8,7 @@ Generate-crud is a plug-in that automatically generates pojo, service, and contr
 <H2>STEP 1</H2>
 <p> Create a springboot project to import web packages ,then Import the required jar package and place the generate-crud.xml file in the java/resources/template/directory</p>
 <H2>STEP 2</H2>
-<code>
+
 		<dependency>
 			<groupId>org.freemarker</groupId>
 			<artifactId>freemarker</artifactId>
@@ -34,12 +34,13 @@ Generate-crud is a plug-in that automatically generates pojo, service, and contr
 			<artifactId>jaxen</artifactId>
 			<version>1.1.6</version>
 		</dependency>
-</code>
+
 <H2>STEP 3</H2>
 <p> Write startup code  and run it ~!</p>
-<code>
+
+```
 	public static void main(String[] args) {
 		Main.init();
 		Main.generate();
 	}
-</code>
+```
