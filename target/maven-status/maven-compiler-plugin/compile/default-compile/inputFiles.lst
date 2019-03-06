@@ -8,11 +8,15 @@ H:\generate-crud\src\main\java\com\model\Foods.java
 H:\generate-crud\src\main\java\com\model\AdminUsers.java
 H:\generate-crud\src\main\java\com\service\NewsService.java
 H:\generate-crud\src\main\java\com\controller\AdminUsersController.java
+H:\generate-crud\src\main\java\com\serviceImp\UsersServiceImp.java
 H:\generate-crud\src\main\java\com\model\News.java
+H:\generate-crud\src\main\java\com\serviceImp\NewsServiceImp.java
 H:\generate-crud\src\main\java\com\Generator\utils\JSONResult.java
 H:\generate-crud\src\main\java\com\service\UsersService.java
 H:\generate-crud\src\main\java\com\service\AdminUsersService.java
 H:\generate-crud\src\main\java\com\Generator\main\Main.java
 H:\generate-crud\src\main\java\com\Generator\utils\JDBCUtils.java
+H:\generate-crud\src\main\java\com\serviceImp\FoodsServiceImp.java
 H:\generate-crud\src\main\java\com\controller\FoodsController.java
 H:\generate-crud\src\main\java\com\model\Users.java
+H:\generate-crud\src\main\java\com\serviceImp\AdminUsersServiceImp.java

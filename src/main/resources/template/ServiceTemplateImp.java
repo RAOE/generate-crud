@@ -1,11 +1,12 @@
 package ${package};
 import java.util.List;
-
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
 import ${modelPath}.${model};
+import ${mapperPath}.${mapperName};
 
 
 import ${servicePath}.${serviceName};
@@ -13,35 +14,35 @@ import ${servicePath}.${serviceName};
 @Service
 public class ${className} implements ${serviceName}
 {
+    @Autowired
+    private ${mapperName} mapper;
+
+
 	@Override
 	@Transactional(propagation = Propagation.REQUIRED)
 	public void addSubmit(${model} model) {
-		// TODO Auto-generated method stub
-		
+		mapper.insert(model);
 	}
 	@Override
 	@Transactional(propagation = Propagation.REQUIRED)
 	public void update(${model} model) {
-		// TODO Auto-generated method stub
-		
+		mapper.updateByPrimaryKeySelective(model);
 	}
 
 	@Override
 	@Transactional(propagation = Propagation.SUPPORTS)
 	public List<${model}> queryAll() {
-		// TODO Auto-generated method stub
-		return null;
-	}
+		return mapper.selectAll();
+		}
 
 	@Override
 	@Transactional(propagation = Propagation.REQUIRED)
-	public void delete(Long id) {
-		// TODO Auto-generated method stub
-		
+	public void delete(${model}  model) {
+        mapper.delete(model);
 	}
-  
-	
-	
-	
+
+
+
+
 
 }

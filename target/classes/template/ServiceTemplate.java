@@ -9,6 +9,6 @@ public interface ${className}
    public void addSubmit(${modelName} modelName);
    public void update(${modelName} modelName);
    public List<${modelName}> queryAll();
-   public void delete(Long id);
+   public void delete(${modelName} id);
 
 }

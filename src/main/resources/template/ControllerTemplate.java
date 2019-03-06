@@ -36,7 +36,7 @@ public class ${className}{
 	 * @return
 	 */
 	@RequestMapping("/delete.do")
-	public JSONResult delete(Long id) {
+	public JSONResult delete(${model}  model) {
 		return JSONResult.ok("删除成功");
 	}
 

@@ -32,11 +32,13 @@ public class Main {
 	// 代码生成位置
 	public static String targetProject = Main.class.getResource("/").getPath().replace("/target/classes/", "")
 			+ "/src/main/java/";
+	public static String modelPath = "com//Generator//model";// model包的生产路径
+	public static String servicePath = "com//Generator//service";// service包的生产路径
+	public static String serviceImpPath = "com//Generator//serviceImp";// service包实现层的生产路径
+	public static String controllerPath = "com//Generator//controller";// controller包的生产路径
+	public static String mapperPath = "com//Generator//mapper";// controller包的生产路径
+	public static String myMapperPath = "com//Generator//utils";// myMapper路径
 
-	public static String modelPath = "com//model";// model包的生产路径
-	public static String servicePath = "com//service";// service包的生产路径
-	public static String serviceImpPath = "com//serviceImp";// service包实现层的生产路径
-	public static String controllerPath = "com//controller";// controller包的生产路径
 
 	public static void main(String[] args) {
 		Main.init();
@@ -94,12 +96,53 @@ public class Main {
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
-		Writer docout = null;
 		generateModel(cfg, tableList, modelList, dir);// 创建model包与model类的代码
 		generateService(cfg, modelList, dir);// 创建service包和service类的代码
 		generateController(cfg, modelList, dir);// 创建controller包和controller类的代码
 		generateServiceImp(cfg, modelList, dir);// 创建service包和service类的代码
+		generateMapper(cfg,modelList,dir);
 		System.out.println("-----code生成完成....-------");
+	}
+   /*
+    * generate-mapper
+    */
+	private static void generateMapper(Configuration cfg, List<String> modelList, File dir) {
+		Map<String, Object> rootMap = new HashMap<String, Object>();
+		List<String> mapperNameList = DataUtils.dealClassNameByParam(modelList, "Mapper");// 每一个model类增加后缀名
+		List<String> mapperNameListSuffix = DataUtils.dealClassName(mapperNameList);// 添加后缀名
+		Writer docout = null;
+		try {
+			for (int i = 0; i < modelList.size(); i++) {
+				Template temp = cfg.getTemplate("MapperTemplateImp.java");
+				File documentFile = new File(dir + "//" + mapperPath);
+				if (!documentFile.exists()) {
+					documentFile.mkdir();
+				}
+				File docFile = new File(documentFile + "//" + mapperNameListSuffix.get(i));
+				docout = new BufferedWriter(new OutputStreamWriter(new FileOutputStream(docFile)));
+				rootMap.put("myMapperPath",myMapperPath.replace("//", "."));
+				rootMap.put("className",mapperNameList.get(i));
+				rootMap.put("model",modelList.get(i));
+				rootMap.put("package",mapperPath.replace("//", "."));
+				rootMap.put("modelPath", modelPath.replace("//", "."));
+
+				temp.process(rootMap, docout);
+			}
+		} catch (IOException e) {
+			e.printStackTrace();
+		} catch (TemplateException e) {
+			e.printStackTrace();
+		} finally {
+			try {
+				if (docout != null) {
+					docout.flush();
+					docout.close();
+				}
+			} catch (IOException e) {
+				e.printStackTrace();
+			}
+		}
+
 	}
 
 	/**
@@ -115,6 +158,7 @@ public class Main {
 		List<String> serviceImpNameList = DataUtils.dealClassNameByParam(modelList, "ServiceImp");// 每一个model类增加后缀名
 		List<String> serviceImpNameListSuffix = DataUtils.dealClassName(serviceImpNameList);// 添加后缀名
 		List<String> serviceNameList = DataUtils.dealClassNameByParam(modelList, "Service");// 每一个model类增加后缀名
+		List<String> mapperNameList = DataUtils.dealClassNameByParam(modelList, "Mapper");// 每一个model类增加后缀名
 
 		Writer docout = null;
 		try {
@@ -132,6 +176,8 @@ public class Main {
 				rootMap.put("servicePath", servicePath.replace("//", "."));
 				rootMap.put("model", modelList.get(i));
 				rootMap.put("modelPath", modelPath.replace("//", "."));
+				rootMap.put("mapperPath", mapperPath.replace("//", "."));
+				rootMap.put("mapperName", mapperNameList.get(i));
 
 				temp.process(rootMap, docout);
 			}
