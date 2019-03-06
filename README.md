@@ -7,9 +7,7 @@ Generate-crud is a plug-in that automatically generates pojo, service, and contr
 <p>lib/generate-crud.jar</p>
 <p>lib/mysql-connector-java-5.0.8-bin.jar</p>
 <p>lib/generatorCRUD.xml</p>
-<p>you can get it by link：https://pan.baidu.com/s/1nJgKg3tb1Yb4GDlhsykz4w 
-key：6ilu 
-</p>
+<p>you can get it by <a href="/lib">click here</a></p>
 <H2>STEP 1</H2>
 <p> Create a springboot project to import web packages ,then Import the required jar package and place the generate-crud.xml file in the java/resources/template/directory</p>
 <H2>STEP 2</H2>
