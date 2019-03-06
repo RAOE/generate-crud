@@ -99,7 +99,6 @@ public class Main {
 		generateService(cfg, modelList, dir);// 创建service包和service类的代码
 		generateController(cfg, modelList, dir);// 创建controller包和controller类的代码
 		generateServiceImp(cfg, modelList, dir);// 创建service包和service类的代码
-//		generateController(cfg, modelList, dir);// 创建controller包和controller类的代码
 		System.out.println("-----code生成完成....-------");
 	}
 
