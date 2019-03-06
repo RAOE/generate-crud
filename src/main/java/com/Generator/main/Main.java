@@ -17,6 +17,9 @@ import org.dom4j.Document;
 import org.dom4j.DocumentException;
 import org.dom4j.Element;
 import org.dom4j.io.SAXReader;
+import org.springframework.transaction.annotation.Propagation;
+import org.springframework.transaction.annotation.Transactional;
+
 import com.Generator.utils.DataUtils;
 import freemarker.template.Configuration;
 import freemarker.template.Template;
@@ -32,10 +35,9 @@ public class Main {
 
 	public static String modelPath = "com//model";// model包的生产路径
 	public static String servicePath = "com//service";// service包的生产路径
+	public static String serviceImpPath = "com//serviceImp";// service包实现层的生产路径
 	public static String controllerPath = "com//controller";// controller包的生产路径
-	
-	
-	
+
 	public static void main(String[] args) {
 		Main.init();
 		Main.generate();
@@ -88,7 +90,7 @@ public class Main {
 		try {
 			cfg.setDefaultEncoding("utf-8");
 			cfg.setDirectoryForTemplateLoading(new File(Main.class.getResource("/template").getFile().toString()));
-			
+
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
@@ -96,22 +98,80 @@ public class Main {
 		generateModel(cfg, tableList, modelList, dir);// 创建model包与model类的代码
 		generateService(cfg, modelList, dir);// 创建service包和service类的代码
 		generateController(cfg, modelList, dir);// 创建controller包和controller类的代码
+		generateServiceImp(cfg, modelList, dir);// 创建service包和service类的代码
+//		generateController(cfg, modelList, dir);// 创建controller包和controller类的代码
 		System.out.println("-----code生成完成....-------");
+	}
+
+	/**
+	 * generate-serviceImp
+	 * 
+	 * @param cfg
+	 * @param modelList
+	 * @param dir
+	 */
+
+	private static void generateServiceImp(Configuration cfg, List<String> modelList, File dir) {
+		Map<String, Object> rootMap = new HashMap<String, Object>();
+		List<String> serviceImpNameList = DataUtils.dealClassNameByParam(modelList, "ServiceImp");// 每一个model类增加后缀名
+		List<String> serviceImpNameListSuffix = DataUtils.dealClassName(serviceImpNameList);// 添加后缀名
+		List<String> serviceNameList = DataUtils.dealClassNameByParam(modelList, "Service");// 每一个model类增加后缀名
+
+		Writer docout = null;
+		try {
+			for (int i = 0; i < modelList.size(); i++) {
+				Template temp = cfg.getTemplate("ServiceTemplateImp.java");
+				File documentFile = new File(dir + "//" + serviceImpPath);
+				if (!documentFile.exists()) {
+					documentFile.mkdir();
+				}
+				File docFile = new File(documentFile + "//" + serviceImpNameListSuffix.get(i));
+				docout = new BufferedWriter(new OutputStreamWriter(new FileOutputStream(docFile)));
+				rootMap.put("className", serviceImpNameList.get(i));
+				rootMap.put("serviceName", serviceNameList.get(i));
+				rootMap.put("package", serviceImpPath.replace("//", "."));
+				rootMap.put("servicePath", servicePath.replace("//", "."));
+				rootMap.put("model", modelList.get(i));
+				rootMap.put("modelPath", modelPath.replace("//", "."));
+
+				temp.process(rootMap, docout);
+			}
+		} catch (IOException e) {
+			e.printStackTrace();
+		} catch (TemplateException e) {
+			e.printStackTrace();
+		} finally {
+			try {
+				if (docout != null) {
+					docout.flush();
+					docout.close();
+				}
+			} catch (IOException e) {
+				e.printStackTrace();
+			}
+		}
 
 	}
 
+	/**
+	 * generate-controller
+	 * 
+	 * @param cfg
+	 * @param modelList
+	 * @param dir
+	 */
 	private static void generateController(Configuration cfg, List<String> modelList, File dir) {
 		Map<String, Object> rootMap = new HashMap<String, Object>();
 		List<String> controllerNameList = DataUtils.dealClassNameByParam(modelList, "Controller");// 每一个model类增加后缀名
-		List<String> controllerNameListSuffix=DataUtils.dealClassName(controllerNameList);
-		List<String> serviceNameList = DataUtils.dealClassNameByParam(modelList,"Service");// 每一个model类增加后缀名
+		List<String> controllerNameListSuffix = DataUtils.dealClassName(controllerNameList);
+		List<String> serviceNameList = DataUtils.dealClassNameByParam(modelList, "Service");// 每一个model类增加后缀名
 
 		Writer docout = null;
 		try {
 			for (int i = 0; i < modelList.size(); i++) {
 
 				Template temp = cfg.getTemplate("ControllerTemplate.java");
-				
+
 				File documentFile = new File(dir + "//" + controllerPath);
 				if (!documentFile.exists()) {
 					documentFile.mkdir();
@@ -142,8 +202,16 @@ public class Main {
 			}
 		}
 	}
+
+	/**
+	 * generate-service
+	 * 
+	 * @param cfg
+	 * @param modelList
+	 * @param dir
+	 */
 	private static void generateService(Configuration cfg, List<String> modelList, File dir) {
-		List<String> serviceNameList = DataUtils.dealClassNameByParam(modelList,"Service");// 每一个model类增加后缀名
+		List<String> serviceNameList = DataUtils.dealClassNameByParam(modelList, "Service");// 每一个model类增加后缀名
 		List<String> serviceListSuffix = DataUtils.dealClassName(serviceNameList);
 		Map<String, Object> rootMap = new HashMap<String, Object>();
 		Writer docout = null;
@@ -179,6 +247,14 @@ public class Main {
 		}
 	}
 
+	/**
+	 * generate-model
+	 * 
+	 * @param cfg
+	 * @param tableList
+	 * @param modelList
+	 * @param dir
+	 */
 	private static void generateModel(Configuration cfg, List<String> tableList, List<String> modelList, File dir) {
 		List<String> modelListSuffix = DataUtils.dealClassName(modelList);// 每一个model类增加后缀名
 		Map<String, Object> rootMap = new HashMap<String, Object>();

@@ -44,6 +44,8 @@ pom.xml
     		</dependency>
 
 <H2>STEP 3</H2>
+<P>   maven install  </P>
+<H2>STEP 4</H2>
 <p> Write startup code  and run it ~!</p>
 
 	public static void main(String[] args) {
