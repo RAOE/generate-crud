@@ -9,11 +9,17 @@
 	<jdbcConfiguration>
 		<!-- 需要指定驱动类型、链接地址、账号、密码 -->
 		<driverClassName>com.mysql.jdbc.Driver</driverClassName>
-		<url>jdbc:mysql://localhost/canteen</url>
+		<url>jdbc:mysql://localhost/zhangshangzudb</url>
 		<username>root</username>
 		<password>root</password>
 	</jdbcConfiguration>
 	<!-- 写做测试 -->
+	<table>
+		<!-- 指定table数据库的名称，根据table表来生产实体类 -->
+		<tableName>t_roles</tableName>
+		<!-- 实体类的名称 -->
+		<modelName>Roles</modelName>
+	</table>
 	<table>
 		<!-- 指定table数据库的名称，根据table表来生产实体类 -->
 		<tableName>t_users</tableName>
@@ -22,20 +28,26 @@
 	</table>
 	<table>
 		<!-- 指定table数据库的名称，根据table表来生产实体类 -->
-		<tableName>t_adminUser</tableName>
+		<tableName>t_adminlogs</tableName>
 		<!-- 实体类的名称 -->
-		<modelName>AdminUsers</modelName>
+		<modelName>AdminLogs</modelName>
 	</table>
 	<table>
 		<!-- 指定table数据库的名称，根据table表来生产实体类 -->
-		<tableName>t_news</tableName>
+		<tableName>t_cities</tableName>
 		<!-- 实体类的名称 -->
-		<modelName>News</modelName>
+		<modelName>Cities</modelName>
 	</table>
 	<table>
 		<!-- 指定table数据库的名称，根据table表来生产实体类 -->
-		<tableName>t_foods</tableName>
+		<tableName>t_houses</tableName>
 		<!-- 实体类的名称 -->
-		<modelName>Foods</modelName>
+		<modelName>Houses</modelName>
+	</table>
+	<table>
+		<!-- 指定table数据库的名称，根据table表来生产实体类 -->
+		<tableName>t_permissions</tableName>
+		<!-- 实体类的名称 -->
+		<modelName>Permissions</modelName>
 	</table>
 </generatorConfiguration>
