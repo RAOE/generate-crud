@@ -15,7 +15,6 @@ import com.Generator.utils.JDBCUtils;
  * @version V1.0
  */
 public class JDBCTEST {
-
 	static {
 		Main.init();// 初始化启动项目
 	}

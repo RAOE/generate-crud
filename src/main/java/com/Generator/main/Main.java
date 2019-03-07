@@ -30,8 +30,7 @@ public class Main {
 	public static List<Map<String, String>> list = new ArrayList<>();
 
 	// 代码生成位置
-	public static String targetProject = Main.class.getResource("/").getPath().replace("/target/classes/", "")
-			+ "/src/main/java/";
+	public static String targetProject = Main.class.getResource("/").getPath().replace("/target/classes/", "") + "/src/main/java/";
 	public static String modelPath = "com//Generator//model";// model包的生产路径
 	public static String servicePath = "com//Generator//service";// service包的生产路径
 	public static String serviceImpPath = "com//Generator//serviceImp";// service包实现层的生产路径
@@ -39,10 +38,12 @@ public class Main {
 	public static String mapperPath = "com//Generator//mapper";// controller包的生产路径
 	public static String myMapperPath = "com//Generator//utils";// myMapper路径
 
-
+	//优化前	代码生成完成 ，耗时：575毫秒
+//
 	public static void main(String[] args) {
 		Main.init();
 		Main.generate();
+
 	}
 
 	/**
@@ -103,9 +104,9 @@ public class Main {
 		generateMapper(cfg,modelList,dir);
 		System.out.println("-----code生成完成....-------");
 	}
-   /*
-    * generate-mapper
-    */
+	/*
+	 * generate-mapper
+	 */
 	private static void generateMapper(Configuration cfg, List<String> modelList, File dir) {
 		Map<String, Object> rootMap = new HashMap<String, Object>();
 		List<String> mapperNameList = DataUtils.dealClassNameByParam(modelList, "Mapper");// 每一个model类增加后缀名
@@ -147,7 +148,7 @@ public class Main {
 
 	/**
 	 * generate-serviceImp
-	 * 
+	 *
 	 * @param cfg
 	 * @param modelList
 	 * @param dir
@@ -200,7 +201,7 @@ public class Main {
 
 	/**
 	 * generate-controller
-	 * 
+	 *
 	 * @param cfg
 	 * @param modelList
 	 * @param dir
@@ -250,7 +251,7 @@ public class Main {
 
 	/**
 	 * generate-service
-	 * 
+	 *
 	 * @param cfg
 	 * @param modelList
 	 * @param dir
@@ -294,7 +295,7 @@ public class Main {
 
 	/**
 	 * generate-model
-	 * 
+	 *
 	 * @param cfg
 	 * @param tableList
 	 * @param modelList
