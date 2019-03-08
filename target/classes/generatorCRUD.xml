@@ -13,6 +13,14 @@
 		<username>root</username>
 		<password>root</password>
 	</jdbcConfiguration>
+	<!--定义各个层的包名  -->
+	<generatePath>
+		<model>com.example.model</model>
+		<service>com.example.service</service>
+		<serviceImp>com.example.serviceImp</serviceImp>
+	    <controller>com.example.controller</controller>
+		<mapper>com.example.mapper</mapper>
+	</generatePath>
 	<!-- 写做测试 -->
 	<table>
 		<!-- 指定table数据库的名称，根据table表来生产实体类 -->

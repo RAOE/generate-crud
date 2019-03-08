@@ -75,6 +75,7 @@ public class DataUtils {
 	public static Map<String, String> getColumnMap(String string) {
 		// 查詢数据库中的所有列明并且添加到Map集合中
 		Map<String, String> columnMap = new HashMap<String, String>();
+		Map<String, String> columnTypeMap=new HashMap<>();
 		ResultSet rs = null;
 		try {
 			rs = JDBCUtils.executeQuery("select * from " + string);
@@ -82,6 +83,8 @@ public class DataUtils {
 			int numberOfColumns = metaData.getColumnCount();// 获取有多少列
 			for (int i = 0; i < numberOfColumns; i++) {
 				String columnName = dealColumnName(metaData, i);
+				String columnType = dealColumnType(metaData, i);
+				System.out.println("columnName:"+columnName+",columnType:"+columnType);
 				columnMap.put(columnName, columnName);
 			}
 		} catch (SQLException e) {
@@ -119,6 +122,28 @@ public class DataUtils {
 		}
 		return columnName;
 	}
+
+	/**
+	 * 处理sql返回的类型名称
+	 * @param rsmd
+	 * @param i
+	 * @return
+	 */
+
+	private static String dealColumnType(ResultSetMetaData rsmd, int i) {
+		String columnType = null;
+		try {
+			columnType=rsmd.getColumnTypeName(i + 1).toLowerCase();
+			String charAfterLine = String.valueOf(columnType.charAt((columnType.indexOf("_") + 1)));
+			String convertedChar = charAfterLine.toUpperCase();
+			columnType = columnType.replace("_" + charAfterLine, convertedChar);
+			return columnType;
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		return columnType;
+	}
+
 
 	/**
 	 * 从集合中取出map里的key
