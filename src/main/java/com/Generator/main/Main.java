@@ -25,6 +25,8 @@ import freemarker.template.Configuration;
 import freemarker.template.Template;
 import freemarker.template.TemplateException;
 
+import javax.xml.crypto.Data;
+
 public class Main {
 
 	public static List<Map<String, String>> list = new ArrayList<>();
@@ -305,6 +307,7 @@ public class Main {
 		List<String> modelListSuffix = DataUtils.dealClassName(modelList);// 每一个model类增加后缀名
 		Map<String, Object> rootMap = new HashMap<String, Object>();
 		Map<String, String> columnMap = new HashMap<String, String>();
+//clob
 		Writer docout = null;
 		try {
 			if (!dir.exists()) {
@@ -318,6 +321,8 @@ public class Main {
 				}
 				File docFile = new File(documentFile + "//" + modelListSuffix.get(i));
 				columnMap = DataUtils.getColumnMap(tableList.get(i));
+				columnMap =DataUtils.formateMap(columnMap);
+				//rootMap.put("columnTypeMap", columnTypeMap);
 				rootMap.put("columnMap", columnMap);
 				rootMap.put("className", modelList.get(i));
 				rootMap.put("package", modelPath.replace("//", "."));
