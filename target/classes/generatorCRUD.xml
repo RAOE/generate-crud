@@ -13,13 +13,13 @@
 		<username>root</username>
 		<password>root</password>
 	</jdbcConfiguration>
-	<!--定义各个层的包名  -->
+	<!--定义各个层的包名  修改为你自己的包路径，如果是springboot项目则置入main方法的子包下 -->
 	<generatePath>
-		<model>com.example.model</model>
-		<service>com.example.service</service>
-		<serviceImp>com.example.serviceImp</serviceImp>
-	    <controller>com.example.controller</controller>
-		<mapper>com.example.mapper</mapper>
+		<model>com.Generator.model</model>
+		<service>com.Generator.service</service>
+		<serviceImp>com.Generator.serviceImp</serviceImp>
+	    <controller>com.Generator.controller</controller>
+		<mapper>com.Generator.mapper</mapper>
 	</generatePath>
 	<!-- 写做测试 -->
 	<table>

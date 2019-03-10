@@ -33,11 +33,14 @@ public class Main {
 
 	// 代码生成位置
 	public static String targetProject = Main.class.getResource("/").getPath().replace("/target/classes/", "") + "/src/main/java/";
+	//默认的包的生成路径
 	public static String modelPath = "com//Generator//model";// model包的生产路径
 	public static String servicePath = "com//Generator//service";// service包的生产路径
 	public static String serviceImpPath = "com//Generator//serviceImp";// service包实现层的生产路径
 	public static String controllerPath = "com//Generator//controller";// controller包的生产路径
 	public static String mapperPath = "com//Generator//mapper";// controller包的生产路径
+
+    //需要配置MyMapper包的路径
 	public static String myMapperPath = "com//Generator//utils";// myMapper路径
 
 	//优化前	代码生成完成 ，耗时：575毫秒
@@ -87,6 +90,11 @@ public class Main {
 	public static void generate() {
 		List<String> tableList = DataUtils.getValue(list, "tableName");// 拿到数据库表名
 		List<String> modelList = DataUtils.getValue(list, "modelName");// 拿到类名 与数据库名 一 一对应
+		modelPath=DataUtils.getPath(list,"model");
+		servicePath=DataUtils.getPath(list,"service");
+		serviceImpPath=DataUtils.getPath(list,"serviceImp");
+		controllerPath=DataUtils.getPath(list,"controller");
+		mapperPath=DataUtils.getPath(list,"mapper");
 		File dir = new File(targetProject);// 这里将路径定义为统一模板资源路径
 		if (tableList.size() != modelList.size()) {
 			throw new RuntimeException("检查你的配置文件 tableName 是否与modelName 一一对应");
@@ -162,7 +170,6 @@ public class Main {
 		List<String> serviceImpNameListSuffix = DataUtils.dealClassName(serviceImpNameList);// 添加后缀名
 		List<String> serviceNameList = DataUtils.dealClassNameByParam(modelList, "Service");// 每一个model类增加后缀名
 		List<String> mapperNameList = DataUtils.dealClassNameByParam(modelList, "Mapper");// 每一个model类增加后缀名
-
 		Writer docout = null;
 		try {
 			for (int i = 0; i < modelList.size(); i++) {
@@ -181,7 +188,6 @@ public class Main {
 				rootMap.put("modelPath", modelPath.replace("//", "."));
 				rootMap.put("mapperPath", mapperPath.replace("//", "."));
 				rootMap.put("mapperName", mapperNameList.get(i));
-
 				temp.process(rootMap, docout);
 			}
 		} catch (IOException e) {

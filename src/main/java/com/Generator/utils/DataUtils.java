@@ -18,6 +18,21 @@ import com.sun.org.apache.bcel.internal.generic.SWITCH;
  * @date: 2019年3月1日 上午11:13:57
  */
 public class DataUtils {
+
+
+
+   public static String getPath(List<Map<String,String>> list,String pathName)
+   {
+       for(Map<String,String> map:list)
+       {
+           String path=map.get(pathName);
+           if (!CommonUtils.isEmpty(path)) {
+               return path;
+           }
+       }
+       return null;
+   }
+
     /**
      * 返回数据库中所有表名
      *
@@ -172,7 +187,6 @@ public class DataUtils {
         Map<String, String> map = new HashMap<>();
         //遍历map集合，将其中的数据库字段属性转换为java字段属性
         for (Map.Entry<String,String> entry:  columnMap.entrySet()) {
-            System.out.println("value= " + entry.getValue());
             switch (entry.getValue()) {
                 case "bigint":
                      map.put(entry.getKey(),"Long");
@@ -185,19 +199,15 @@ public class DataUtils {
                      break;
                 case "int":
                      map.put(entry.getKey(),"int");
+                case "float":
+                     map.put(entry.getKey(),"float");
+                case "tinyint":
+                     map.put(entry.getKey(),"boolean");
             }
         }
         return map;
     }
 
-    public static void main(String []args)
-    {
-       Map map=new HashMap();
-       map.put("test1","test2");
-       map.put("test2","test3");
-       map.put("test1","test3");
-       System.out.println(map);
 
-    }
 
 }
