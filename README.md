@@ -2,7 +2,7 @@
 Generate-crud is a plug-in that automatically generates pojo, service, and controller layers to avoid repetitive development. It can be used to generate project deployments (based on springboot development) through database tables and personalized configuration.
 <p>Idea:Dao begets One, One begets Two, Two begets Three, Three begets all things</p>
 <H1>How to use it ?</H1>
-<a href="READMECH.ME"<H2>中文文档</H2></a>
+<a href="./READMECH.ME"<H2>中文文档</H2></a>
 <H2>STEP 1</H2>
 <H3>Environment</H3>
 <p>lib/generate-crud.jar</p>
