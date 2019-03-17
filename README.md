@@ -120,3 +120,8 @@ mapper层!</p>
     		<modelName>Permissions</modelName>
     	</table>
     </generatorConfiguration>
+    
+   <br/>
+   <p> 您的支持就是我们选择继续开源下去的动力,如果觉得还不错的话 请为他star 谢谢~~!
+    </p>
+
