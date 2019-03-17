@@ -39,12 +39,9 @@ public class Main {
 	public static String serviceImpPath = "com//Generator//serviceImp";// service包实现层的生产路径
 	public static String controllerPath = "com//Generator//controller";// controller包的生产路径
 	public static String mapperPath = "com//Generator//mapper";// controller包的生产路径
-
     //需要配置MyMapper包的路径
 	public static String myMapperPath = "com//Generator//utils";// myMapper路径
-
 	//优化前	代码生成完成 ，耗时：575毫秒
-//
 	public static void main(String[] args) {
 		Main.init();
 		Main.generate();
@@ -219,13 +216,11 @@ public class Main {
 		List<String> controllerNameList = DataUtils.dealClassNameByParam(modelList, "Controller");// 每一个model类增加后缀名
 		List<String> controllerNameListSuffix = DataUtils.dealClassName(controllerNameList);
 		List<String> serviceNameList = DataUtils.dealClassNameByParam(modelList, "Service");// 每一个model类增加后缀名
-
 		Writer docout = null;
 		try {
 			for (int i = 0; i < modelList.size(); i++) {
 
 				Template temp = cfg.getTemplate("ControllerTemplate.java");
-
 				File documentFile = new File(dir + "//" + controllerPath);
 				if (!documentFile.exists()) {
 					documentFile.mkdir();
@@ -310,10 +305,9 @@ public class Main {
 	 * @param dir
 	 */
 	private static void generateModel(Configuration cfg, List<String> tableList, List<String> modelList, File dir) {
-		List<String> modelListSuffix = DataUtils.dealClassName(modelList);// 每一个model类增加后缀名
+		List<String> modelListSuffix = DataUtils.dealClassName(modelList);
 		Map<String, Object> rootMap = new HashMap<String, Object>();
 		Map<String, String> columnMap = new HashMap<String, String>();
-//clob
 		Writer docout = null;
 		try {
 			if (!dir.exists()) {
@@ -328,7 +322,6 @@ public class Main {
 				File docFile = new File(documentFile + "//" + modelListSuffix.get(i));
 				columnMap = DataUtils.getColumnMap(tableList.get(i));
 				columnMap =DataUtils.formateMap(columnMap);
-				//rootMap.put("columnTypeMap", columnTypeMap);
 				rootMap.put("columnMap", columnMap);
 				rootMap.put("className", modelList.get(i));
 				rootMap.put("package", modelPath.replace("//", "."));
