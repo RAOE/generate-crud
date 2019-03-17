@@ -12,8 +12,10 @@ generate-Crud是一个插件，可以自动生成实体层、服务层和控制�
 <H2>步骤1</H2>
 <p> 
  首先按照往常那样创建springboot项目，并且整合mybatis springmvc ,整合完毕后
- 导入相关的jar包 generate.jar  mysql-connector-java-5.0.8-bin.jar 到项目中，将generateCRUD.xml
- 拷贝到src/java/resource 目录下，将template模板引擎拷贝到src/java/resource目录下。最后
+ 导入相关的jar包 generate.jar(必备)  mysql-connector-java-5.0.8-bin.jar（数据库驱动包）到项目中， </p>
+<p>将generateCRUD.xml
+ 拷贝到src/java/resource 目录下，
+ 将template模板引擎拷贝到src/java/resource目录下。最后
  根据generateCRUD 介绍配置为自己所需要的配置!</p>
 <H2>步骤 2</H2>
 导入相关的maven依赖
@@ -55,3 +57,66 @@ mapper层!</p>
 		Main.init();
 		Main.generate();
 	}
+<H2>关于generateCRUD.xml文件介绍</H2>
+<?xml version="1.0" encoding="UTF-8"?>
+
+    <!-- 自动生成crud代码 -->
+    <generatorConfiguration>
+    	<!--指定数据库的链接的账号密码 同时需要JDBC包 -->
+    	<classPath>
+    		<classPathEntry>G:/mysqlconnector/mysql-connector-java-5.0.8-bin.jar
+    		</classPathEntry>
+    	</classPath>
+    	<jdbcConfiguration>
+    		<!-- 需要指定驱动类型、链接地址、账号、密码 -->
+    		<driverClassName>com.mysql.jdbc.Driver</driverClassName>
+    		<url>jdbc:mysql://localhost/zhangshangzudb</url>
+    		<username>root</username>
+    		<password>root</password>
+    	</jdbcConfiguration>
+    	<!--定义各个层的包名  修改为你自己的包路径，如果是springboot项目则置入main方法的子包下 -->
+    	<generatePath>
+    		<model>com.Generator.model</model>
+    		<service>com.Generator.service</service>
+    		<serviceImp>com.Generator.serviceImp</serviceImp>
+    	    <controller>com.Generator.controller</controller>
+    		<mapper>com.Generator.mapper</mapper>
+    	</generatePath>
+    	<!-- 写做测试 -->
+    	<table>
+    		<!-- 指定table数据库的名称，根据table表来生产实体类 -->
+    		<tableName>t_roles</tableName>
+    		<!-- 实体类的名称 -->
+    		<modelName>Roles</modelName>
+    	</table>
+    	<table>
+    		<!-- 指定table数据库的名称，根据table表来生产实体类 -->
+    		<tableName>t_users</tableName>
+    		<!-- 实体类的名称 -->
+    		<modelName>Users</modelName>
+    	</table>
+    	<table>
+    		<!-- 指定table数据库的名称，根据table表来生产实体类 -->
+    		<tableName>t_adminlogs</tableName>
+    		<!-- 实体类的名称 -->
+    		<modelName>AdminLogs</modelName>
+    	</table>
+    	<table>
+    		<!-- 指定table数据库的名称，根据table表来生产实体类 -->
+    		<tableName>t_cities</tableName>
+    		<!-- 实体类的名称 -->
+    		<modelName>Cities</modelName>
+    	</table>
+    	<table>
+    		<!-- 指定table数据库的名称，根据table表来生产实体类 -->
+    		<tableName>t_houses</tableName>
+    		<!-- 实体类的名称 -->
+    		<modelName>Houses</modelName>
+    	</table>
+    	<table>
+    		<!-- 指定table数据库的名称，根据table表来生产实体类 -->
+    		<tableName>t_permissions</tableName>
+    		<!-- 实体类的名称 -->
+    		<modelName>Permissions</modelName>
+    	</table>
+    </generatorConfiguration>
