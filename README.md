@@ -3,7 +3,7 @@
 generate-Crud是一个插件，可以自动生成实体层、服务层和控制器层，映射层，以避免重复开发。它可以通过数据库表和个性化配置生成项目部署（基于SpringBoot开发）。</p>
 <H1>如何使用它 ?</H1>
 <a href="./READMECH.md"<H2>英文文档</H2></a>
-<H2>步骤 1</H2>
+
 <H3>必备环境</H3>
 <p>lib/generate.jar</p>
 <p>lib/mysql-connector-java-5.0.8-bin.jar</p>
