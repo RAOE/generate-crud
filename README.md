@@ -12,11 +12,13 @@ generate-Crud是一个插件，可以自动生成实体层、服务层和控制�
 <H2>步骤1</H2>
 <p> 
  首先按照往常那样创建springboot项目，并且整合mybatis springmvc ,整合完毕后
- 导入相关的jar包 generate.jar(必备)  mysql-connector-java-5.0.8-bin.jar（数据库驱动包）到项目中， </p>
+ 导入相关的jar包 generate.jar(必备)  mysql-connector-java-5.0.8-bin.jar（数据库驱动包必备） utils工具类到项目中， </p>
+<H2>步骤2</H2>
 <p>将generateCRUD.xml
- 拷贝到src/java/resource 目录下，
- 将template模板引擎拷贝到src/java/resource目录下。最后
- 根据generateCRUD 介绍配置为自己所需要的配置!</p>
+ 拷贝到src/main/resource 目录下，
+ 将template模板引擎拷贝到src/main/resource目录下。
+ 将utils工具包拷贝到src/java/
+ 最后根据generateCRUD 介绍配置为自己所需要的配置!</p>
 <H2>步骤 2</H2>
 导入相关的maven依赖
 pom.xml
@@ -46,10 +48,29 @@ pom.xml
     			<artifactId>jaxen</artifactId>
     			<version>1.1.6</version>
     		</dependency>
+    			<!-- 整合mybatis -->
+            		<dependency>
+            			<groupId>org.mybatis.spring.boot</groupId>
+            			<artifactId>mybatis-spring-boot-starter</artifactId>
+            			<version>1.3.0</version>
+            		</dependency>
+            		<!--mybatis -->
+            		<dependency>
+            			<groupId>org.mybatis.spring.boot</groupId>
+            			<artifactId>mybatis-spring-boot-starter</artifactId>
+            			<version>1.3.1</version>
+            		</dependency>
+            		<!--mapper -->
+            		<dependency>
+            			<groupId>tk.mybatis</groupId>
+            			<artifactId>mapper-spring-boot-starter</artifactId>
+            			<version>1.2.4</version>
+            		</dependency>
 
-<H2>步骤 3</H2>
-<P>   maven install 安装相应的依赖环境 </P>
 <H2>步骤 4</H2>
+<P>   maven install 安装相应的依赖环境 
+</P>
+<H2>步骤 5</H2>
 <p> 编写启动代码，开始创建crud 代码以及相关的service层、serviceImp层、controller层、model层
 mapper层!</p>
 
@@ -57,6 +78,13 @@ mapper层!</p>
 		Main.init();
 		Main.generate();
 	}
+<H2>步骤 6</H2>
+<p>
+注意增加mapperscan 扫描mapper层的代码
+@MapperScan("com.Generator.mapper")
+</p>
+
+ 
 <H2>关于generateCRUD.xml文件介绍</H2>
 <?xml version="1.0" encoding="UTF-8"?>
 
