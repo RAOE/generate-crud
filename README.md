@@ -8,6 +8,8 @@ generate-Crud是一个插件，可以自动生成实体层、服务层和控制�
 <p>lib/generate.jar</p>
 <p>lib/mysql-connector-java-5.0.8-bin.jar</p>
 <p>lib/generatorCRUD.xml</p>
+<p>lib/utils</p>
+
 <p>从这里可以获得 <a href="/lib">点击这里</a></p>
 <H2>步骤1</H2>
 <p> 
@@ -19,7 +21,7 @@ generate-Crud是一个插件，可以自动生成实体层、服务层和控制�
  将template模板引擎拷贝到src/main/resource目录下。
  将utils工具包拷贝到src/java/
  最后根据generateCRUD 介绍配置为自己所需要的配置!</p>
-<H2>步骤 2</H2>
+<H2>步骤 3</H2>
 导入相关的maven依赖
 pom.xml
 
