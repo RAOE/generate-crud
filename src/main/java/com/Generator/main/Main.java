@@ -229,6 +229,7 @@ public class Main {
 				docout = new BufferedWriter(new OutputStreamWriter(new FileOutputStream(docFile)));
 				rootMap.put("className", controllerNameList.get(i));
 				rootMap.put("model", modelList.get(i));
+				rootMap.put("requestMapping", modelList.get(i).toLowerCase());
 				rootMap.put("serviceName", serviceNameList.get(i));
 				rootMap.put("package", controllerPath.replace("//", "."));
 				rootMap.put("modelPath", modelPath.replace("//", "."));

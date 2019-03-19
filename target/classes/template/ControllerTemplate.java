@@ -10,7 +10,7 @@ import ${modelPath}.${model};
 import ${servicePath}.${serviceName};
 
 @RestController
-@RequestMapping("/${model}")
+@RequestMapping("/${requestMapping}")
 public class ${className}{
 
 	@Autowired
@@ -28,6 +28,7 @@ public class ${className}{
 	@RequestMapping("/addSubmit.do")
 	public JSONResult addSubmit(${model}  model)
 	{
+		service.addSubmit(model);
 		return JSONResult.ok("添加成功");
 	}
 
@@ -37,6 +38,7 @@ public class ${className}{
 	 */
 	@RequestMapping("/delete.do")
 	public JSONResult delete(${model}  model) {
+		service.delete(model);
 		return JSONResult.ok("删除成功");
 	}
 
@@ -47,6 +49,7 @@ public class ${className}{
 	@RequestMapping("/update.do")
 	public JSONResult update(${model}  model)
 	{
+		service.update(model);
 		return JSONResult.ok("更新成功");
 	}
 
@@ -56,7 +59,7 @@ public class ${className}{
 	 */
 	@RequestMapping("queryAll.do")
 	public JSONResult queryAll() {
-		return JSONResult.ok("查询完成");
+		return JSONResult.ok(service.queryAll());
 	}
 
 }
