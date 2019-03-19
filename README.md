@@ -7,6 +7,8 @@ generate-Crud是一个插件，可以自动生成实体层、服务层和控制�
 <H3>必备环境</H3>
 <p>lib/generate.jar</p>
 <p>lib/mysql-connector-java-5.0.8-bin.jar</p>
+<p>lib/mysql-connector-java-5.1.47.jar</p>
+
 <p>lib/generatorCRUD.xml</p>
 <p>lib/utils</p>
 
