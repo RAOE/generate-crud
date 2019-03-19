@@ -83,7 +83,14 @@ mapper层!</p>
 <H2>步骤 6</H2>
 <p>
 注意增加mapperscan 扫描mapper层的代码
-@MapperScan("com.Generator.mapper")
+@MapperScan("com.Generator.mapper") springboot项目可以使用下面的依赖环境，ssm项目可以自行在maven仓库中选择合适的依赖
+
+	     <dependency>
+                <groupId>tk.mybatis</groupId>
+                <artifactId>mapper-spring-boot-starter</artifactId>
+                <version>2.1.5</version>
+            </dependency>
+
 </p>
 
  

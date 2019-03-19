@@ -117,5 +117,6 @@
     <orderEntry type="library" name="Maven: tk.mybatis:mapper-spring-boot-autoconfigure:1.2.4" level="project" />
     <orderEntry type="library" name="Maven: tk.mybatis:mapper:3.5.3" level="project" />
     <orderEntry type="library" name="Maven: javax.persistence:persistence-api:1.0" level="project" />
+    <orderEntry type="library" name="mysql-connector-java-5.1.47" level="project" />
   </component>
 </module>
