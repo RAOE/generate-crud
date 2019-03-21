@@ -1,13 +1,13 @@
 <component name="libraryTable">
   <library name="Maven: org.springframework.boot:spring-boot-starter-jdbc:2.2.0.BUILD-SNAPSHOT">
     <CLASSES>
-      <root url="jar://$MAVEN_REPOSITORY$/org/springframework/boot/spring-boot-starter-jdbc/2.2.0.BUILD-SNAPSHOT/spring-boot-starter-jdbc-2.2.0.BUILD-20190305.114148-155.jar!/" />
+      <root url="jar://$MAVEN_REPOSITORY$/org/springframework/boot/spring-boot-starter-jdbc/2.2.0.BUILD-SNAPSHOT/spring-boot-starter-jdbc-2.2.0.BUILD-20190320.105427-195.jar!/" />
     </CLASSES>
     <JAVADOC>
-      <root url="jar://$MAVEN_REPOSITORY$/org/springframework/boot/spring-boot-starter-jdbc/2.2.0.BUILD-SNAPSHOT/spring-boot-starter-jdbc-2.2.0.BUILD-20190305.114148-155-javadoc.jar!/" />
+      <root url="jar://$MAVEN_REPOSITORY$/org/springframework/boot/spring-boot-starter-jdbc/2.2.0.BUILD-SNAPSHOT/spring-boot-starter-jdbc-2.2.0.BUILD-20190320.105427-195-javadoc.jar!/" />
     </JAVADOC>
     <SOURCES>
-      <root url="jar://$MAVEN_REPOSITORY$/org/springframework/boot/spring-boot-starter-jdbc/2.2.0.BUILD-SNAPSHOT/spring-boot-starter-jdbc-2.2.0.BUILD-20190305.114148-155-sources.jar!/" />
+      <root url="jar://$MAVEN_REPOSITORY$/org/springframework/boot/spring-boot-starter-jdbc/2.2.0.BUILD-SNAPSHOT/spring-boot-starter-jdbc-2.2.0.BUILD-20190320.105427-195-sources.jar!/" />
     </SOURCES>
   </library>
 </component>
