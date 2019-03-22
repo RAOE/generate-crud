@@ -1,40 +1,48 @@
-package ${package};
+package com.Generator.serviceImp;
 import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
-import ${modelPath}.${model};
-import ${mapperPath}.${mapperName};
+import com.Generator.model.AdminLogs;
+import com.Generator.mapper.AdminLogsMapper;
 
 
-import ${servicePath}.${serviceName};
+import com.Generator.service.AdminLogsService;
 //author:xuyuanfeng
 @Service
-public class ${className} implements ${serviceName}
+public class AdminLogsServiceImp implements AdminLogsService
 {
     @Autowired
-    private ${mapperName} mapper;
+    private AdminLogsMapper mapper;
+
+
 	@Override
 	@Transactional(propagation = Propagation.REQUIRED)
-	public void addSubmit(${model} model) {
+	public void addSubmit(AdminLogs model) {
 		mapper.insert(model);
 	}
 	@Override
 	@Transactional(propagation = Propagation.REQUIRED)
-	public void update(${model} model) {
+	public void update(AdminLogs model) {
 		mapper.updateByPrimaryKeySelective(model);
 	}
+
 	@Override
 	@Transactional(propagation = Propagation.SUPPORTS)
-	public List<${model}> queryAll() {
+	public List<AdminLogs> queryAll() {
 		return mapper.selectAll();
-	}
+		}
+
 	@Override
 	@Transactional(propagation = Propagation.REQUIRED)
-	public void delete(${model}  model){
+	public void delete(AdminLogs  model) {
         mapper.delete(model);
 	}
+
+
+
+
 
 }

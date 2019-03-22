@@ -1,40 +1,48 @@
-package ${package};
+package com.Generator.serviceImp;
 import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
-import ${modelPath}.${model};
-import ${mapperPath}.${mapperName};
+import com.Generator.model.Cities;
+import com.Generator.mapper.CitiesMapper;
 
 
-import ${servicePath}.${serviceName};
+import com.Generator.service.CitiesService;
 //author:xuyuanfeng
 @Service
-public class ${className} implements ${serviceName}
+public class CitiesServiceImp implements CitiesService
 {
     @Autowired
-    private ${mapperName} mapper;
+    private CitiesMapper mapper;
+
+
 	@Override
 	@Transactional(propagation = Propagation.REQUIRED)
-	public void addSubmit(${model} model) {
+	public void addSubmit(Cities model) {
 		mapper.insert(model);
 	}
 	@Override
 	@Transactional(propagation = Propagation.REQUIRED)
-	public void update(${model} model) {
+	public void update(Cities model) {
 		mapper.updateByPrimaryKeySelective(model);
 	}
+
 	@Override
 	@Transactional(propagation = Propagation.SUPPORTS)
-	public List<${model}> queryAll() {
+	public List<Cities> queryAll() {
 		return mapper.selectAll();
-	}
+		}
+
 	@Override
 	@Transactional(propagation = Propagation.REQUIRED)
-	public void delete(${model}  model){
+	public void delete(Cities  model) {
         mapper.delete(model);
 	}
+
+
+
+
 
 }

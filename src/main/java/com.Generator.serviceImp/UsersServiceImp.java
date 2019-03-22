@@ -1,40 +1,48 @@
-package ${package};
+package com.Generator.serviceImp;
 import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
-import ${modelPath}.${model};
-import ${mapperPath}.${mapperName};
+import com.Generator.model.Users;
+import com.Generator.mapper.UsersMapper;
 
 
-import ${servicePath}.${serviceName};
+import com.Generator.service.UsersService;
 //author:xuyuanfeng
 @Service
-public class ${className} implements ${serviceName}
+public class UsersServiceImp implements UsersService
 {
     @Autowired
-    private ${mapperName} mapper;
+    private UsersMapper mapper;
+
+
 	@Override
 	@Transactional(propagation = Propagation.REQUIRED)
-	public void addSubmit(${model} model) {
+	public void addSubmit(Users model) {
 		mapper.insert(model);
 	}
 	@Override
 	@Transactional(propagation = Propagation.REQUIRED)
-	public void update(${model} model) {
+	public void update(Users model) {
 		mapper.updateByPrimaryKeySelective(model);
 	}
+
 	@Override
 	@Transactional(propagation = Propagation.SUPPORTS)
-	public List<${model}> queryAll() {
+	public List<Users> queryAll() {
 		return mapper.selectAll();
-	}
+		}
+
 	@Override
 	@Transactional(propagation = Propagation.REQUIRED)
-	public void delete(${model}  model){
+	public void delete(Users  model) {
         mapper.delete(model);
 	}
+
+
+
+
 
 }

@@ -1,40 +1,48 @@
-package ${package};
+package com.Generator.serviceImp;
 import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
-import ${modelPath}.${model};
-import ${mapperPath}.${mapperName};
+import com.Generator.model.Roles;
+import com.Generator.mapper.RolesMapper;
 
 
-import ${servicePath}.${serviceName};
+import com.Generator.service.RolesService;
 //author:xuyuanfeng
 @Service
-public class ${className} implements ${serviceName}
+public class RolesServiceImp implements RolesService
 {
     @Autowired
-    private ${mapperName} mapper;
+    private RolesMapper mapper;
+
+
 	@Override
 	@Transactional(propagation = Propagation.REQUIRED)
-	public void addSubmit(${model} model) {
+	public void addSubmit(Roles model) {
 		mapper.insert(model);
 	}
 	@Override
 	@Transactional(propagation = Propagation.REQUIRED)
-	public void update(${model} model) {
+	public void update(Roles model) {
 		mapper.updateByPrimaryKeySelective(model);
 	}
+
 	@Override
 	@Transactional(propagation = Propagation.SUPPORTS)
-	public List<${model}> queryAll() {
+	public List<Roles> queryAll() {
 		return mapper.selectAll();
-	}
+		}
+
 	@Override
 	@Transactional(propagation = Propagation.REQUIRED)
-	public void delete(${model}  model){
+	public void delete(Roles  model) {
         mapper.delete(model);
 	}
+
+
+
+
 
 }

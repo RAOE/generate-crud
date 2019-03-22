@@ -98,7 +98,6 @@ public class DataUtils {
             for (int i = 0; i < numberOfColumns; i++) {
                 String columnName = dealColumnName(metaData, i);
                 String columnType = dealColumnType(metaData, i);
-
                 columnMap.put(columnName, columnType);
             }
         } catch (SQLException e) {

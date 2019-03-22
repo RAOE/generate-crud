@@ -1,40 +1,48 @@
-package ${package};
+package com.Generator.serviceImp;
 import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
-import ${modelPath}.${model};
-import ${mapperPath}.${mapperName};
+import com.Generator.model.Permissions;
+import com.Generator.mapper.PermissionsMapper;
 
 
-import ${servicePath}.${serviceName};
+import com.Generator.service.PermissionsService;
 //author:xuyuanfeng
 @Service
-public class ${className} implements ${serviceName}
+public class PermissionsServiceImp implements PermissionsService
 {
     @Autowired
-    private ${mapperName} mapper;
+    private PermissionsMapper mapper;
+
+
 	@Override
 	@Transactional(propagation = Propagation.REQUIRED)
-	public void addSubmit(${model} model) {
+	public void addSubmit(Permissions model) {
 		mapper.insert(model);
 	}
 	@Override
 	@Transactional(propagation = Propagation.REQUIRED)
-	public void update(${model} model) {
+	public void update(Permissions model) {
 		mapper.updateByPrimaryKeySelective(model);
 	}
+
 	@Override
 	@Transactional(propagation = Propagation.SUPPORTS)
-	public List<${model}> queryAll() {
+	public List<Permissions> queryAll() {
 		return mapper.selectAll();
-	}
+		}
+
 	@Override
 	@Transactional(propagation = Propagation.REQUIRED)
-	public void delete(${model}  model){
+	public void delete(Permissions  model) {
         mapper.delete(model);
 	}
+
+
+
+
 
 }

@@ -160,7 +160,6 @@ public class Main {
 	 * @param modelList
 	 * @param dir
 	 */
-
 	private static void generateServiceImp(Configuration cfg, List<String> modelList, File dir) {
 		Map<String, Object> rootMap = new HashMap<String, Object>();
 		List<String> serviceImpNameList = DataUtils.dealClassNameByParam(modelList, "ServiceImp");// 每一个model类增加后缀名
@@ -236,7 +235,6 @@ public class Main {
 				rootMap.put("servicePath", servicePath.replace("//", "."));
 				temp.process(rootMap, docout);
 			}
-
 		} catch (IOException e) {
 			e.printStackTrace();
 		} catch (TemplateException e) {
